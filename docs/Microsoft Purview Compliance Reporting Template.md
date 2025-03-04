@@ -183,6 +183,16 @@ pd.DataFrame(consumer_data).to_excel("CCPA-Data-Inventory.xlsx")
 - [NIST CSF Purview Mapping](https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf)
 - [FedRAMP Moderate Compliance Kit](https://marketplace.azurecr.io/microsoft/fedramp-purview)
 
-**[⬆ Back to Top](#microsoft-purview-compliance-reporting-templates-)**  
-```
 
+**Pro Tips**:
+1. Use [Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/) to auto-remediate compliance gaps
+2. Integrate with [Microsoft Compliance Manager](https://learn.microsoft.com/en-us/microsoft-365/compliance/compliance-manager?view=o365-worldwide) for cross-cloud assessments
+3. Leverage [Purview's Business Glossary](https://learn.microsoft.com/en-us/azure/purview/concept-business-glossary) for regulation-specific term mapping
+
+**Contribution Guidelines**:
+```markdown
+# How to Contribute
+1. Fork the repository
+2. Add new compliance templates to `/templates/{regulation}`
+3. Include validation scripts in `/scripts`
+4. Submit PR with [Compliance] tag
