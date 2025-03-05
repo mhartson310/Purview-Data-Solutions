@@ -1,0 +1,53 @@
+{
+    "version": "1.2",
+    "policies": [
+        {
+            "name": "PII Auto-Labeling",
+            "description": "Automatically label personally identifiable information",
+            "conditions": {
+                "dataPatterns": [
+                    "Microsoft.CreditCardNumber",
+                    "Microsoft.USSocialSecurityNumber",
+                    "Custom.PassportNumber"
+                ],
+                "locations": [
+                    "AzureBlobStorage",
+                    "AzureSQLDatabase"
+                ]
+            },
+            "actions": {
+                "label": "Highly Confidential",
+                "encrypt": true,
+                "protectAction": "Audit",
+                "notification": {
+                    "email": "security-team@company.com",
+                    "slackWebhook": "https://hooks.slack.com/services/TXXXXXX/BXXXXXX"
+                }
+            }
+        },
+        {
+            "name": "PHI Handling",
+            "description": "Protected Health Information classification",
+            "conditions": {
+                "dataPatterns": [
+                    "Microsoft.MedicalRecordNumber",
+                    "Custom.PatientID"
+                ],
+                "contentContains": ["medical", "diagnosis", "treatment"]
+            },
+            "actions": {
+                "label": "Restricted - Healthcare",
+                "retentionDays": 365,
+                "accessRestrictions": {
+                    "allowedGroups": ["HealthcareTeam"],
+                    "requireMFA": true
+                }
+            }
+        }
+    ],
+    "complianceStandards": {
+        "gdpr": true,
+        "hipaa": true,
+        "ccpa": true
+    }
+}
